@@ -32,4 +32,6 @@ public class LoanApiController {
         int result = loanService.saveLoan(loan);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+
+
 }

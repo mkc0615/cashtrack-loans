@@ -20,9 +20,16 @@ public class LoanRepository {
                 .getResultList();
     }
 
-    // Loan insert
+    // Insert loan case
     public int insertLoan(Loan loan){
         em.persist(loan);
         return loan.getUserNo();
+    }
+
+    // delete loan case
+    public int deleteLoan(Loan loan){
+        int removeNo = loan.getUserNo();
+        em.remove(loan);
+        return removeNo;
     }
 }

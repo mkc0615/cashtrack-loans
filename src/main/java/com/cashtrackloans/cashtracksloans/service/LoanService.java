@@ -21,18 +21,14 @@ public class LoanService {
 
         List<Loan> todayList = loanRepository.findByUserNo(userNo);
 
-        todayList.forEach(c -> {
+        LocalDate todayTime = LocalDate.now();
 
-            LocalDate todayTime = LocalDate.now();
+        todayList.forEach(c -> {
             LocalDate lendTime = c.getLendTime();
             int dateDiff = todayTime.compareTo(lendTime);
-
             int newAmount = Math.toIntExact(Math.round(c.getAmount() * (dateDiff * (c.getInterestRate()/100))));
-
             c.setInterestAmount(newAmount);
-
         });
-
         return todayList;
     }
 
@@ -40,5 +36,4 @@ public class LoanService {
     public int saveLoan(Loan loan){
         return loanRepository.insertLoan(loan);
     }
-
 }
