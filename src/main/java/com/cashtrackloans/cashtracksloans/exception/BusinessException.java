@@ -8,4 +8,5 @@ import lombok.Getter;
 public class BusinessException extends RuntimeException{
 
     private final ErrorEnum errorEnum;
+
 }
