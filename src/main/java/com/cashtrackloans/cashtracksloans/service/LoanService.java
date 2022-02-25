@@ -27,7 +27,7 @@ public class LoanService {
             LocalDate lendTime = c.getLendTime();
             int dateDiff = todayTime.compareTo(lendTime);
             int newAmount = Math.toIntExact(Math.round(c.getAmount() * (dateDiff * (c.getInterestRate()/100))));
-            c.setInterestAmount(newAmount);
+            // c.setInterestAmount(newAmount);
         });
         return todayList;
     }

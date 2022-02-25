@@ -23,7 +23,6 @@ public class Loan {
     private int entry;
     private int amount;
     private double interestRate;
-    private int interestAmount;
     private LocalDate lendTime;
     private LocalDate expireTime;
 
@@ -37,14 +36,10 @@ public class Loan {
         this.entry=entry;
         this.amount=amount;
         this.interestRate = interestRate;
-        this.interestAmount = interestAmount;
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         this.lendTime = LocalDate.parse(lendTimeStr, dtf);
     }
 
-    public void setInterestAmount(int newAmount){
-        this.interestAmount = newAmount;
-    }
 }
