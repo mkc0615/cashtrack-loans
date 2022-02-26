@@ -27,11 +27,8 @@ public class Loan {
     private LocalDate expireTime;
 
     // 내부 생성자 메서드
-    public void createLoanEntry(int entry,
-                                int amount,
-                                double interestRate,
-                                int interestAmount,
-                                String lendTimeStr
+    public void createLoanEntry(
+            int entry, int amount, double interestRate, String lendTimeStr
     ){
         this.entry=entry;
         this.amount=amount;

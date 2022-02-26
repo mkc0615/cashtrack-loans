@@ -1,6 +1,7 @@
 package com.cashtrackloans.cashtracksloans.repository;
 
 import com.cashtrackloans.cashtracksloans.domain.Loan;
+import com.cashtrackloans.cashtracksloans.domain.Repayment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -32,4 +33,25 @@ public class LoanRepository {
         em.remove(loan);
         return removeNo;
     }
+
+    // Get repayment list
+    public List<Repayment> getRepaymentByNo(int userNo){
+        return em.createQuery("select re from Repayment re where re.userNo =:userNo", Repayment.class)
+                .setParameter("userNo", userNo)
+                .getResultList();
+    }
+
+    // Insert repayment case
+    public int insertRepayment(Repayment repayment){
+        em.persist(repayment);
+        return repayment.getRepayNo();
+    }
+
+    // Delete repayment case
+    public int deleteRepayment(Repayment repayment){
+        int removeNo = repayment.getRepayNo();
+        em.remove(repayment);
+        return removeNo;
+    }
+
 }
