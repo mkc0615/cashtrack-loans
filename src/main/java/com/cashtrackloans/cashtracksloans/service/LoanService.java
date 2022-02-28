@@ -1,6 +1,7 @@
 package com.cashtrackloans.cashtracksloans.service;
 
 import com.cashtrackloans.cashtracksloans.domain.Loan;
+import com.cashtrackloans.cashtracksloans.domain.Repayment;
 import com.cashtrackloans.cashtracksloans.repository.LoanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,4 +37,17 @@ public class LoanService {
     public int saveLoan(Loan loan){
         return loanRepository.insertLoan(loan);
     }
+
+    // Get Repayment List
+    public List<Repayment> findRepayments(int userNo){
+        List<Repayment> resultList = loanRepository.getRepaymentByNo(userNo);
+
+        return resultList;
+    }
+
+    // Add Repayment case
+    public int saveRepay(Repayment repayment){
+        return loanRepository.insertRepayment(repayment);
+    }
+
 }
