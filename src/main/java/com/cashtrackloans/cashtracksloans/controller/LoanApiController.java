@@ -1,7 +1,10 @@
 package com.cashtrackloans.cashtracksloans.controller;
 
 import com.cashtrackloans.cashtracksloans.domain.Loan;
+import com.cashtrackloans.cashtracksloans.domain.Repayment;
+import com.cashtrackloans.cashtracksloans.domain.User;
 import com.cashtrackloans.cashtracksloans.domain.api.UserLoanList;
+import com.cashtrackloans.cashtracksloans.domain.api.UserRepayList;
 import com.cashtrackloans.cashtracksloans.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,5 +36,12 @@ public class LoanApiController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @GetMapping("/list/{userNo}")
+    public ResponseEntity<UserRepayList> repayList(@PathVariable("userNo") int userNo){
+        List<Repayment> resultList = loanService.findRepayments(userNo);
+        UserRepayList response = new UserRepayList();
+        response.createList(userNo, resultList);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 
 }
