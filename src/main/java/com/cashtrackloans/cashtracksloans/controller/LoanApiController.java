@@ -30,13 +30,13 @@ public class LoanApiController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addLoans")
     public ResponseEntity<Integer> addLoans(@RequestBody Loan loan){
         int result = loanService.saveLoan(loan);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    @GetMapping("/list/{userNo}")
+    @GetMapping("/repay/{userNo}")
     public ResponseEntity<UserRepayList> repayList(@PathVariable("userNo") int userNo){
         List<Repayment> resultList = loanService.findRepayments(userNo);
         UserRepayList response = new UserRepayList();
@@ -44,4 +44,9 @@ public class LoanApiController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @PostMapping("/addRepay")
+    public ResponseEntity<Integer> addRepay(@RequestBody Repayment repayment){
+        int result = loanService.saveRepay(repayment);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 }
