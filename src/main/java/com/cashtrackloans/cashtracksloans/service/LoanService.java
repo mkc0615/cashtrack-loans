@@ -38,6 +38,11 @@ public class LoanService {
         return loanRepository.insertLoan(loan);
     }
 
+    // Expire Loan case
+    public int expireLoan(Loan loan){
+        return loanRepository.deleteLoan(loan);
+    }
+
     // Get Repayment List
     public List<Repayment> findRepayments(int userNo){
         List<Repayment> resultList = loanRepository.getRepaymentByNo(userNo);
@@ -49,5 +54,6 @@ public class LoanService {
     public int saveRepay(Repayment repayment){
         return loanRepository.insertRepayment(repayment);
     }
+
 
 }

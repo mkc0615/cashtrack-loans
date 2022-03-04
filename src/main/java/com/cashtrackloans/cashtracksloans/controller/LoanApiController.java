@@ -36,6 +36,12 @@ public class LoanApiController {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
+    @PostMapping("/expireLoans")
+    public ResponseEntity<Integer> expireLoans(@RequestBody Loan loan){
+        int result = loanService.expireLoan(loan);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
     @GetMapping("/repay/{userNo}")
     public ResponseEntity<UserRepayList> repayList(@PathVariable("userNo") int userNo){
         List<Repayment> resultList = loanService.findRepayments(userNo);
