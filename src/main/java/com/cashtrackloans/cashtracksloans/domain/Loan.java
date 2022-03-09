@@ -39,4 +39,8 @@ public class Loan {
         this.lendTime = LocalDate.parse(lendTimeStr, dtf);
     }
 
+    public void setNewAmount(int newAmount){
+        this.amount = newAmount;
+    }
+
 }

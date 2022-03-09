@@ -28,7 +28,7 @@ public class LoanService {
             LocalDate lendTime = c.getLendTime();
             int dateDiff = todayTime.compareTo(lendTime);
             int newAmount = Math.toIntExact(Math.round(c.getAmount() * (dateDiff * (c.getInterestRate()/100))));
-            // c.setInterestAmount(newAmount);
+            c.setNewAmount(newAmount);
         });
         return todayList;
     }
@@ -54,6 +54,5 @@ public class LoanService {
     public int saveRepay(Repayment repayment){
         return loanRepository.insertRepayment(repayment);
     }
-
 
 }
