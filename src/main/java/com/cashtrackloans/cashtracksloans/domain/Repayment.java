@@ -18,6 +18,8 @@ public class Repayment {
     @GeneratedValue
     private int repayNo;
 
+    private int bondNo;
+
     private int repayAmount;
 
     private int actualAmount;

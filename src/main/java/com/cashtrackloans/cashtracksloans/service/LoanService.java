@@ -45,14 +45,29 @@ public class LoanService {
 
     // Get Repayment List
     public List<Repayment> findRepayments(int userNo){
-        List<Repayment> resultList = loanRepository.getRepaymentByNo(userNo);
-
-        return resultList;
+        return loanRepository.getRepaymentByNo(userNo);
     }
 
     // Add Repayment case
-    public int saveRepay(Repayment repayment){
+    public int saveRepay(int repayTotalAmount, LocalDate repayDate, Loan loan){
+
+        int thisLoanNo = loan.getBondNo();
+
+        String thisStatus = "0";
+
+        LocalDate todayTime = LocalDate.now();
+        LocalDate expireDate = loan.getExpireTime();
+        int timeDiff = expireDate.compareTo(todayTime);
+
+        double thisRate = loan.getInterestRate();
+        int interestAmount = Math.toIntExact(Math.round(repayTotalAmount * (1+thisRate / 100)));
+
+        Repayment repayment = new Repayment();
+        repayment.createRepayEntry(repayTotalAmount, repayTotalAmount-interestAmount, interestAmount, thisStatus);
+
         return loanRepository.insertRepayment(repayment);
     }
+
+
 
 }

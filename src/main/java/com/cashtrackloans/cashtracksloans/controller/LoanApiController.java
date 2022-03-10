@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,12 @@ public class LoanApiController {
     }
 
     @PostMapping("/addRepay")
-    public ResponseEntity<Integer> addRepay(@RequestBody Repayment repayment){
-        int result = loanService.saveRepay(repayment);
+    public ResponseEntity<Integer> addRepay(Loan loan){
+
+        int totalAmount = 0;
+        LocalDate repayDate = LocalDate.now();
+
+        int result = loanService.saveRepay(totalAmount, repayDate, loan);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }
