@@ -1,5 +1,6 @@
 package com.cashtrackloans.cashtracksloans.repository;
 
+import com.cashtrackloans.cashtracksloans.domain.HistoryLog;
 import com.cashtrackloans.cashtracksloans.domain.Loan;
 import com.cashtrackloans.cashtracksloans.domain.Repayment;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,12 @@ public class LoanRepository {
         int removeNo = repayment.getRepayNo();
         em.remove(repayment);
         return removeNo;
+    }
+
+    public int addHistoryLog(HistoryLog loanLog){
+        int resultNo = loanLog.getUserNo();
+        em.persist(loanLog);
+        return resultNo;
     }
 
 }

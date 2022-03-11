@@ -1,12 +1,10 @@
 package com.cashtrackloans.cashtracksloans.domain;
 
+import com.netflix.discovery.converters.Auto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class HistoryLog {
 
     @Id
+    @GeneratedValue
     private int entryNo;
 
     private int userNo;

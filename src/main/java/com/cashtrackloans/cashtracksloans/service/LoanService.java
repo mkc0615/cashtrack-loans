@@ -1,5 +1,6 @@
 package com.cashtrackloans.cashtracksloans.service;
 
+import com.cashtrackloans.cashtracksloans.domain.HistoryLog;
 import com.cashtrackloans.cashtracksloans.domain.Loan;
 import com.cashtrackloans.cashtracksloans.domain.Repayment;
 import com.cashtrackloans.cashtracksloans.repository.LoanRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -68,6 +70,16 @@ public class LoanService {
         return loanRepository.insertRepayment(repayment);
     }
 
+    public int loanLog (Loan loan){
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        String dateStr = LocalDate.now().format(dtf);
+
+        HistoryLog loanLog = new HistoryLog();
+        loanLog.createEntry(dateStr, "Loan", "New", loan.getAmount());
+
+        return loanRepository.addHistoryLog(loanLog);
+    }
 
 }
