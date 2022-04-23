@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Loan {
+public class Loan extends BaseEntity{
 
     @Id
     @GeneratedValue

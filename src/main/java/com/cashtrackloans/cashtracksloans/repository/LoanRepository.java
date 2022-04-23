@@ -48,13 +48,6 @@ public class LoanRepository {
         return repayment.getRepayNo();
     }
 
-    // Delete repayment case
-    public int deleteRepayment(Repayment repayment){
-        int removeNo = repayment.getRepayNo();
-        em.remove(repayment);
-        return removeNo;
-    }
-
     public int addHistoryLog(HistoryLog loanLog){
         int resultNo = loanLog.getUserNo();
         em.persist(loanLog);

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Repayment {
+public class Repayment extends BaseEntity{
 
     @Id
     @GeneratedValue
